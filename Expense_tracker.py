@@ -99,17 +99,31 @@ amt = 0
         print(books, " on books.")'''
 
 class Expense:
-    def __init__(self, amount, category, filename):
-        self.amount = amount
-        self.category = category
-        self.filename = filename
+    def __init__(self, amount, category):
+        self.amount = int(amount)
+        self.category = input("category")
+        self.filename = input("ENter filename")
+        self.__dict__ = {"self.category": self.amount}
 
     def save(self):
         fileobj = open("self.filename.json", "w")
         json.dump(self.__dict__, fileobj)
 
     def load(self):
-        
+        fileobj = open("self.filename.json", "r")
+        data = json.load(fileobj)
+        self.__dict__ = data
+
+    def display(self):
+        for k in self.__dict__:
+            print(k, ":", k[1])
+
+ex = Expense(1000, "travel")
+ex.save()
+ex.load()
+
+ex.display()
+
 
     
 
