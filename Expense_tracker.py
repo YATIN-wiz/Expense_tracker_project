@@ -4,7 +4,7 @@ travel,grocery,entertainment,medicines,rent,books = 0,0,0,0,0,0
 
 amt = 0
 
-while(True):
+"""while(True):
     print("1. Adding a new expense")
     print("2. Save to a file")
     print("3. Load from a file")
@@ -81,10 +81,10 @@ while(True):
         break
 
     else:
-        print("Invalid choice!")
+        print("Invalid choice!")"""
         
 
-    ''' print("Total expenses:")
+''' print("Total expenses:")
         #if(travel != 0):
         print(travel, " on travel. ")
         #elif (grocery != 0):
@@ -97,6 +97,19 @@ while(True):
         print(rent, " on rent.")
         #elif (books != 0):
         print(books, " on books.")'''
+
+class Expense:
+    def __init__(self, amount, category, filename):
+        self.amount = amount
+        self.category = category
+        self.filename = filename
+
+    def save(self):
+        fileobj = open("self.filename.json", "w")
+        json.dump(self.__dict__, fileobj)
+
+    def load(self):
+        
 
     
 
