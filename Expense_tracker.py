@@ -135,6 +135,7 @@ while(True):
     if choice == 1:
         amount = input("Enter amount: ")
         category = ["1. Travel", "2. Groceries", "3. Medicines", "4. Rent"]
+        print(category)
         cat = int(input("Enter category: "))
         ex = Expense(amount, cat , "expense", {})
         #ex = Expense(1000, "travel" , "expense", {})
