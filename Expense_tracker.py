@@ -99,30 +99,57 @@ amt = 0
         print(books, " on books.")'''
 
 class Expense:
-    def __init__(self, amount, category):
+    
+    def __init__(self, amount, cat, file, dic):
         self.amount = int(amount)
-        self.category = input("category")
-        self.filename = input("ENter filename")
-        self.__dict__ = {"self.category": self.amount}
+        category = ["Travel", "Groceries", "Medicines", "Rent"]
+        print(category)
+        self.cat = int(cat)
+        self.file = file
+        self.dic = {category[self.cat]: self.amount}
+     
 
     def save(self):
-        fileobj = open("self.filename.json", "w")
-        json.dump(self.__dict__, fileobj)
+        name = self.file
+        fileobj = open("expense1.json", "w")
+        json.dump(self.dic, fileobj)
 
     def load(self):
-        fileobj = open("self.filename.json", "r")
+        fileobj = open("expense1.json", "r")
         data = json.load(fileobj)
-        self.__dict__ = data
+        print(data)
+        #self.dic = data
 
     def display(self):
-        for k in self.__dict__:
-            print(k, ":", k[1])
+        for k, v in self.dic.items():
+            print(k, ":", v )
 
-ex = Expense(1000, "travel")
-ex.save()
-ex.load()
+while(True):
+    print("1. Adding a new expense")
+    print("2. Save to a file")
+    print("3. Load from a file")
+    print("4. Display expense")
+    print("5. Exit")
+    choice = int(input("Enter your choice[1-5]: "))
+    
+    if choice == 1:
+        amount = input("Enter amount: ")
+        cat = int(input("Enter category: "))
+        ex = Expense(amount, cat , "expense", {})
+        #ex = Expense(1000, "travel" , "expense", {})
+    
+    elif choice == 2:
+        ex.save()
 
-ex.display()
+    elif choice == 3:
+        ex.load()
+
+    elif choice == 4:
+        ex.display()
+
+    elif choice == 5:
+        break
+
 
 
     
