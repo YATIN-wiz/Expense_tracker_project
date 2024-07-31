@@ -102,7 +102,7 @@ class Expense:
     
     def __init__(self, amount, cat, file, dic):
         self.amount = int(amount)
-        category = ["Travel", "Groceries", "Medicines", "Rent"]
+        
         print(category)
         self.cat = int(cat)
         self.file = file
@@ -134,6 +134,7 @@ while(True):
     
     if choice == 1:
         amount = input("Enter amount: ")
+        category = ["1. Travel", "2. Groceries", "3. Medicines", "4. Rent"]
         cat = int(input("Enter category: "))
         ex = Expense(amount, cat , "expense", {})
         #ex = Expense(1000, "travel" , "expense", {})
