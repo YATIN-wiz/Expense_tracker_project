@@ -7,23 +7,34 @@ class Expense:
             "amount": amount,
             "cat": cat
         }
+    def getdata(self):
+        return self.data
 
-    def save(self):
-        name = self.file
-        fileobj = open("expense1.json", "w")
-        json.dump(self.dic, fileobj)
-
-    def load(self):
-        fileobj = open("expense1.json", "r")
-        data = json.load(fileobj)
-        print(data)
-        #self.dic = data
-
+  
+        
     def display(self):
        print(f'{self.data["amount"]} on {self.category[self.data["cat"]]}')
 
-#main starts here
+
+def save_all(data):
+    l = []
+    fileobj = open("expense.json", "w")
+    for expense in data:
+        l.append(expense.getdata())
+    print(l)
+    json.dump(l, fileobj)
+   
+
+def load(expenses):
+    fileobj = open("expense.json", "r")
+    data = json.load(fileobj)
+    expenses.append(data)
+    #for datum in data:
+       # print(datum)
+
 expenses = []
+
+
 while(True):
     print("1. Add a new expense")
     print("2. Save to a file")
@@ -36,24 +47,28 @@ while(True):
         amount = input("Enter amount: ")
         for i, cat in enumerate(Expense.category):
             print(i, cat)
+        
         cat = int(input("Enter category: "))
         expenses.append(Expense(amount, cat))
+       
         #ex = Expense(1000, "travel" , "expense", {})
     
     elif choice == 2:
-        expenses.save()
+        save_all(expenses)
+        
+    #    save(expenses)
 
     elif choice == 3:
-        expenses.load()
+        load(expenses)
 
     elif choice == 4:
+       #print(expenses)
+
        for expense in expenses:
-            expense.display()
+           print(expense)  #.display()
 
     elif choice == 5:
         break
-
-
 
     
 
